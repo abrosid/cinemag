@@ -1,0 +1,7 @@
+.claude
+.idea
+.vscode
+composer.lock
+vendor
+temp
+log

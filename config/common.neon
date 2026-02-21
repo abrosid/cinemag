@@ -1,0 +1,56 @@
+# see https://doc.nette.org/en/configuring
+
+parameters:
+
+
+application:
+	errorPresenter:
+		4xx: Error:Error4xx
+		5xx: Error:Error5xx
+	mapping: App\Presentation\*\**Presenter
+
+
+database:
+	dsn: 'mysql:host=mysql;dbname=movie_catalog;charset=utf8mb4'
+	user: nette
+	password: nette
+
+
+latte:
+	strictParsing: yes
+	extensions:
+		- App\Presentation\Accessory\LatteExtension
+
+
+assets:
+	mapping:
+		default:
+			path: assets
+			# type: vite  # Uncomment to activate Vite for asset building
+
+
+extensions:
+	elastica: Contributte\Elastica\DI\ElasticaExtension
+	redis: Contributte\Redis\DI\RedisExtension
+
+
+elastica:
+	debug: %debugMode%
+	config:
+		host: elasticsearch
+		port: 9200
+
+
+redis:
+	debug: %debugMode%
+	# clientFactory: Predis\Client
+	connection:
+		default:
+			uri: tcp://redis:6379
+			storage: true
+
+
+di:
+	export:
+		parameters: no
+		tags: no

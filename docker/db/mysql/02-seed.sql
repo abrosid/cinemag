@@ -1,0 +1,51 @@
+-- Sample seed data for movie catalog
+
+INSERT INTO movie (title, parex, year, description, rating, price) VALUES
+('The Matrix', 'A computer hacker learns about the true nature of reality and his role in the war against its controllers.', 1999, 'Thomas Anderson, a computer programmer, is led to fight an underground war against powerful computers who have constructed his entire reality with a system called the Matrix.', 8.7, 12.99),
+('Inception', 'A skilled thief is given a chance at redemption if he can accomplish the impossible task of inception.', 2010, 'Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state.', 8.8, 14.99),
+('Interstellar', 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.', 2014, 'In Earth\'s future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand, a brilliant NASA physicist, is working on plans to save mankind by transporting Earth\'s population to a new home via a wormhole.', 8.6, 13.99),
+('The Dark Knight', 'Batman faces the Joker, a criminal mastermind who seeks to undermine Batman\'s influence and create chaos in Gotham City.', 2008, 'Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious criminal mastermind known as the Joker appears in Gotham.', 9.0, 15.99),
+('Pulp Fiction', 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 1994, 'Jules Winnfield and Vincent Vega are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace. Wallace has also asked Vincent to take his wife Mia out a few days later when Wallace himself will be out of town.', 8.9, 11.99),
+('The Shawshank Redemption', 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', 1994, 'Andy Dufresne, a successful banker, is arrested for the murders of his wife and her lover and is sentenced to life imprisonment at the Shawshank prison. He becomes the most unconventional prisoner.', 9.3, 10.99),
+('Forrest Gump', 'The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75.', 1994, 'Forrest Gump, while not intelligent, has accidentally been present at many historic moments, but his true love, Jenny Curran, eludes him.', 8.8, 12.49),
+('The Godfather', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', 1972, 'The Godfather follows Vito Corleone, Don of the Corleone family, as he passes the mantle of Don to his youngest son Michael.', 9.2, 13.49),
+('Fight Club', 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much bigger.', 1999, 'A nameless first-person narrator attends support groups in attempt to subdue his emotional state and relieve his insomniac state. When he meets Marla, another fake attendee of support groups, his life seems to become a little more bearable.', 8.8, 11.49),
+('Goodfellas', 'The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners.', 1990, 'Henry Hill is a small time gangster, who takes part in a robbery with Jimmy Conway and Tommy DeVito, two other gangsters who have set their sights a bit higher.', 8.7, 12.99),
+('The Departed', 'An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.', 2006, 'In this crime-action tour de force, the South Boston state police force is waging war on Irish-American organized crime. Young undercover cop Billy Costigan is assigned to infiltrate the mob syndicate run by gangland chief Frank Costello.', 8.5, 13.99),
+('The Prestige', 'After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have.', 2006, 'In the end of the nineteenth century, in London, Robert Angier, his beloved wife Julia McCullough, and Alfred Borden are friends and assistants of a magician. When Julia accidentally dies during a performance, Robert blames Alfred for her death and they become enemies.', 8.5, 12.99),
+('Gladiator', 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.', 2000, 'Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Before his death, the Emperor chooses Maximus to be his heir over his own son, Commodus, and a power struggle leaves Maximus and his family condemned to death.', 8.5, 11.99),
+('The Lord of the Rings: The Fellowship of the Ring', 'A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth.', 2001, 'An ancient Ring thought lost for centuries has been found, and through a strange twist of fate has been given to a small Hobbit named Frodo. When Gandalf discovers the Ring is in fact the One Ring of the Dark Lord Sauron, Frodo must make an epic quest to the Cracks of Doom in order to destroy it.', 8.8, 16.99),
+('The Lord of the Rings: The Return of the King', 'Gandalf and Aragorn lead the World of Men against Sauron\'s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.', 2003, 'The final confrontation between the forces of good and evil fighting for control of the future of Middle-earth. Hobbits Frodo and Sam reach Mordor in their quest to destroy the One Ring, while Aragorn leads the forces of good against Sauron\'s evil army at the stone city of Minas Tirith.', 9.0, 17.99),
+('Django Unchained', 'With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.', 2012, 'In 1858, a bounty hunter named Schultz seeks out a slave named Django and buys him because he needs him to find some men he is looking for. After finding them, Django wants to find his wife, Broomhilda, who along with him were sold separately by their former owner for trying to escape.', 8.4, 13.49),
+('Inglourious Basterds', 'In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner\'s vengeful plans for the same.', 2009, 'In German-occupied France, young Jewish refugee Shosanna Dreyfus witnesses the slaughter of her family by Colonel Hans Landa. Narrowly escaping with her life, she plots her revenge several years later when German war hero Fredrick Zoller takes a rapid interest in her and arranges an illustrious movie premiere at the theater she now runs.', 8.3, 12.99),
+('The Revenant', 'A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.', 2015, 'While exploring the uncharted wilderness in 1823, legendary frontiersman Hugh Glass sustains injuries from a brutal bear attack. When his hunting team leaves him for dead, Glass must utilize his survival skills to find a way back home while avoiding natives on their own hunt.', 8.0, 13.99),
+('Mad Max: Fury Road', 'In a post-apocalyptic wasteland, Max teams up with a mysterious woman, Furiosa, to escape from a tyrannical warlord.', 2015, 'In a stark desert landscape where humanity is broken, two rebels just might be able to restore order: Max, a man of action and of few words, and Furiosa, a woman of action who is seeking a way home through the wasteland.', 8.1, 14.49),
+('Blade Runner 2049', 'Young Blade Runner K\'s discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who\'s been missing for thirty years.', 2017, 'Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what\'s left of society into chaos. K\'s discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.', 8.0, 14.99);
+
+-- Sample file entries (placeholder paths - you can replace with actual image paths)
+INSERT INTO files (name, filepath) VALUES
+('matrix-poster.jpg', '/images/posters/matrix-poster.jpg'),
+('inception-poster.jpg', '/images/posters/inception-poster.jpg'),
+('interstellar-poster.jpg', '/images/posters/interstellar-poster.jpg'),
+('dark-knight-poster.jpg', '/images/posters/dark-knight-poster.jpg'),
+('pulp-fiction-poster.jpg', '/images/posters/pulp-fiction-poster.jpg'),
+('shawshank-poster.jpg', '/images/posters/shawshank-poster.jpg'),
+('forrest-gump-poster.jpg', '/images/posters/forrest-gump-poster.jpg'),
+('godfather-poster.jpg', '/images/posters/godfather-poster.jpg'),
+('fight-club-poster.jpg', '/images/posters/fight-club-poster.jpg'),
+('goodfellas-poster.jpg', '/images/posters/goodfellas-poster.jpg'),
+('departed-poster.jpg', '/images/posters/departed-poster.jpg'),
+('prestige-poster.jpg', '/images/posters/prestige-poster.jpg'),
+('gladiator-poster.jpg', '/images/posters/gladiator-poster.jpg'),
+('lotr-fellowship-poster.jpg', '/images/posters/lotr-fellowship-poster.jpg'),
+('lotr-return-poster.jpg', '/images/posters/lotr-return-poster.jpg'),
+('django-poster.jpg', '/images/posters/django-poster.jpg'),
+('inglourious-basterds-poster.jpg', '/images/posters/inglourious-basterds-poster.jpg'),
+('revenant-poster.jpg', '/images/posters/revenant-poster.jpg'),
+('mad-max-poster.jpg', '/images/posters/mad-max-poster.jpg'),
+('blade-runner-poster.jpg', '/images/posters/blade-runner-poster.jpg');
+
+-- Link movies to their poster files (one-to-one for simplicity)
+INSERT INTO movies_files (movie_id, file_id) VALUES
+(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10),
+(11, 11), (12, 12), (13, 13), (14, 14), (15, 15), (16, 16), (17, 17), (18, 18), (19, 19), (20, 20);

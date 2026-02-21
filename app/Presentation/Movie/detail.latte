@@ -1,0 +1,162 @@
+{block content}
+<div class="page">
+	<a n:href="index" class="back-link">← Back to list</a>
+
+	<article class="movie-detail">
+		<div class="media">
+			<div class="thumbnail">
+{*				{if $movie->thumbnailPath}*}
+{*					<img src="{$movie->thumbnailPath}" alt="{$movie->title}">*}
+{*				{else}*}
+{*					<div class="thumbnail-placeholder">No image</div>*}
+{*				{/if}*}
+				<img src="https://picsum.photos/200/300">
+			</div>
+		</div>
+
+		<div class="content">
+			<header class="header">
+				<h1>{$movie->title}</h1>
+				<div class="meta">
+					<span class="year">{$movie->year}</span>
+					<span class="rating">⭐ {$movie->rating|number:1}</span>
+					<span class="price">{$movie->price|number:2} €</span>
+				</div>
+				<p class="parex">{$movie->parex}</p>
+			</header>
+
+			<section class="description">
+				<h2>Description</h2>
+				<p>{$movie->description}</p>
+			</section>
+		</div>
+	</article>
+</div>
+
+<style>
+.page {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem 3rem;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.back-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	margin-bottom: 1.25rem;
+	text-decoration: none;
+	color: #4b5563;
+	font-size: 0.9rem;
+}
+
+.back-link:hover {
+	color: #111827;
+}
+
+.movie-detail {
+	display: grid;
+	grid-template-columns: 320px 1fr;
+	gap: 2rem;
+	background: white;
+	border-radius: 1.25rem;
+	box-shadow: 0 16px 42px rgba(15, 23, 42, 0.18);
+	overflow: hidden;
+}
+
+.media {
+	background: #020617;
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+}
+
+.thumbnail {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.thumbnail img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.thumbnail-placeholder {
+	color: #9ca3af;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	font-size: 0.9rem;
+}
+
+.content {
+	padding: 1.75rem 2rem 2rem 0;
+}
+
+.header h1 {
+	margin: 0 0 0.75rem;
+	font-size: 1.6rem;
+}
+
+.meta {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	font-size: 0.9rem;
+	color: #6b7280;
+	margin-bottom: 0.75rem;
+}
+
+.meta .year {
+	padding: 0.18rem 0.7rem;
+	border-radius: 999px;
+	background: #eff6ff;
+	color: #1d4ed8;
+}
+
+.meta .rating {
+	padding: 0.18rem 0.7rem;
+	border-radius: 999px;
+	background: #fef3c7;
+	color: #b45309;
+}
+
+.meta .price {
+	margin-left: auto;
+	font-weight: 600;
+	color: #16a34a;
+	font-size: 1.05rem;
+}
+
+.parex {
+	margin: 0 0 1.25rem;
+	color: #4b5563;
+}
+
+.description h2 {
+	margin: 0 0 0.5rem;
+	font-size: 1.1rem;
+}
+
+.description p {
+	margin: 0;
+	line-height: 1.6;
+	color: #374151;
+}
+
+@media (max-width: 900px) {
+	.movie-detail {
+		grid-template-columns: 1fr;
+	}
+
+	.content {
+		padding: 1.75rem 1.5rem 1.75rem;
+	}
+}
+</style>
+
+{/block}
+

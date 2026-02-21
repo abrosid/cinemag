@@ -1,0 +1,373 @@
+{block content}
+<div class="page">
+	<header class="page-header">
+		<div class="brand">
+			<div class="logo">🎬</div>
+			<div class="site-title">
+				<h1>Cinemag</h1>
+				<div class="subtitle">Movie catalog</div>
+			</div>
+		</div>
+		<div class="search">
+			<div class="search-form">
+				<input type="text" name="q" id="search-input" value="{$query}" placeholder="Search movies..." autocomplete="off">
+				<button type="submit">Search</button>
+			</div>
+			<ul id="search-suggestions" class="search-suggestions"></ul>
+		</div>
+	</header>
+
+	<section class="movie-grid">
+		{if $movies}
+			{foreach $movies as $movie}
+				<article class="movie-tile">
+					<a n:href="detail id => $movie->id">
+						<div class="thumbnail">
+{*							{if $movie->thumbnailPath}*}
+{*								<img src="{$movie->thumbnailPath}" alt="{$movie->title}">*}
+{*							{else}*}
+{*								<div class="thumbnail-placeholder">No image</div>*}
+{*							{/if}*}
+							<img src="https://picsum.photos/200/300" lazyload="lazy" alt="{$movie->title}">
+						</div>
+						<div class="info">
+							<h2>{$movie->title}</h2>
+							<div class="meta">
+								<span class="year">{$movie->year}</span>
+								<span class="rating">⭐ {$movie->rating|number:1}</span>
+								<span class="price">{$movie->price|number:2} €</span>
+							</div>
+							<p class="parex">{$movie->parex}</p>
+						</div>
+					</a>
+				</article>
+			{/foreach}
+		{else}
+			<p>No movies found.</p>
+		{/if}
+	</section>
+
+	{var $hasMore = ($page * $limit) < $total}
+	{if $hasMore}
+		<div class="load-more">
+			<a n:href="index page => $page + 1, q => $query" class="btn">Load more</a>
+		</div>
+	{/if}
+</div>
+
+<style>
+.page {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem 3rem;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.page-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.logo {
+	width: 42px;
+	height: 42px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: radial-gradient(circle at 0 0, #ffdd80, #ff6b6b);
+	box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+	font-size: 1.6rem;
+}
+
+.site-title h1 {
+	margin: 0;
+	font-size: 1.6rem;
+}
+
+.subtitle {
+	font-size: 0.9rem;
+	color: #666;
+}
+
+.search {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	position: relative;
+}
+
+.search-form {
+	display: flex;
+	gap: 0.5rem;
+	width: 100%;
+	max-width: 360px;
+}
+
+.search-form input {
+	flex: 1;
+	padding: 0.6rem 0.8rem;
+	border-radius: 999px;
+	border: 1px solid #ddd;
+	font-size: 0.95rem;
+	outline: none;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-form input:focus {
+	border-color: #ff6b6b;
+	box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25);
+}
+
+.search-form button {
+	border-radius: 999px;
+	border: none;
+	padding: 0.6rem 1rem;
+	background: #ff6b6b;
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-form button:hover {
+	background: #ff4b4b;
+	box-shadow: 0 8px 18px rgba(255, 75, 75, 0.4);
+}
+
+.search-suggestions {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	margin-top: 0.4rem;
+	list-style: none;
+	background: white;
+	box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+	border-radius: 0.75rem;
+	padding: 0.4rem 0;
+	width: 100%;
+	max-width: 360px;
+	z-index: 10;
+	display: none;
+}
+
+.search-suggestions.visible {
+	display: block;
+}
+
+.search-suggestions li {
+	padding: 0.5rem 0.9rem;
+	cursor: pointer;
+	font-size: 0.9rem;
+}
+
+.search-suggestions li:hover {
+	background: #f7f7f7;
+}
+
+.movie-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 1.5rem;
+}
+
+.movie-tile {
+	background: white;
+	border-radius: 1rem;
+	box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+	overflow: hidden;
+	transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.movie-tile a {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+}
+
+.movie-tile:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+}
+
+.thumbnail {
+	height: 180px;
+	background: #111827;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.thumbnail img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.thumbnail-placeholder {
+	font-size: 0.9rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	opacity: 0.7;
+}
+
+.info {
+	padding: 1rem 1.1rem 1.1rem;
+}
+
+.info h2 {
+	margin: 0 0 0.5rem;
+	font-size: 1.05rem;
+}
+
+.meta {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	font-size: 0.85rem;
+	color: #6b7280;
+	margin-bottom: 0.5rem;
+}
+
+.meta .year {
+	padding: 0.12rem 0.6rem;
+	border-radius: 999px;
+	background: #eff6ff;
+	color: #1d4ed8;
+}
+
+.meta .rating {
+	padding: 0.12rem 0.6rem;
+	border-radius: 999px;
+	background: #fef3c7;
+	color: #b45309;
+}
+
+.meta .price {
+	margin-left: auto;
+	font-weight: 600;
+	color: #16a34a;
+}
+
+.parex {
+	margin: 0;
+	font-size: 0.9rem;
+	color: #4b5563;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.load-more {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.7rem 1.6rem;
+	border-radius: 999px;
+	background: #111827;
+	color: white;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.95rem;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+	transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+	background: #020617;
+	transform: translateY(-2px);
+	box-shadow: 0 16px 40px rgba(15, 23, 42, 0.55);
+}
+
+@media (max-width: 768px) {
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.search {
+		align-items: stretch;
+		width: 100%;
+	}
+
+	.search-form {
+		max-width: none;
+	}
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	const input = document.getElementById('search-input');
+	const list = document.getElementById('search-suggestions');
+
+	if (!input || !list) {
+		return;
+	}
+
+	let debounceTimer = null;
+
+	const requestSuggestions = async (term) => {
+		const url = {link movie:search}+'?q='+term;
+        // const url = new URL('https://pokeapi.co/api/v2/pokemon');
+        // const params = { limit: "100000", offset: "0" }
+        // url.search = new URLSearchParams(params).toString();
+        //
+        // const data = await fetch(url).then(reponse => response.json());
+		const response = await fetch(url);
+		if (!response.ok) return;
+		const data = await response.json();
+		list.innerHTML = '';
+		for (const title of data.suggestions ?? []) {
+			const li = document.createElement('li');
+			li.textContent = title;
+			li.addEventListener('click', () => {
+				input.value = title;
+				list.classList.remove('visible');
+				input.form?.submit();
+			});
+			list.appendChild(li);
+		}
+		list.classList.toggle('visible', list.children.length > 0);
+	};
+
+	input.addEventListener('input', () => {
+		const term = input.value.trim();
+		if (debounceTimer) window.clearTimeout(debounceTimer);
+
+		if (!term) {
+			list.classList.remove('visible');
+			list.innerHTML = '';
+			return;
+		}
+
+		debounceTimer = window.setTimeout(() => {
+			requestSuggestions(term).catch(() => {});
+		}, 500);
+	});
+
+	document.addEventListener('click', (e) => {
+		if (!list.contains(e.target) && e.target !== input) {
+			list.classList.remove('visible');
+		}
+	});
+});
+</script>
+
+{/block}
+
