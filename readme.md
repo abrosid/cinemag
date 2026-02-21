@@ -1,64 +1,72 @@
-Nette Web Project
-=================
+# Cinemag - Movie Catalog
 
-Welcome to the Nette Web Project! This is a basic skeleton application built using
-[Nette](https://nette.org), ideal for kick-starting your new web projects.
+A Nette-based demo web application for managing and searching a movie catalog.
 
-Nette is a renowned PHP web development framework, celebrated for its user-friendliness,
-robust security, and outstanding performance. It's among the safest choices
-for PHP frameworks out there.
+## Features
 
-If Nette helps you, consider supporting it by [making a donation](https://nette.org/donate).
-Thank you for your generosity!
+- Movie listing and search
+- Elasticsearch-powered search functionality
+- Redis caching
+- MySQL database storage
 
+## Requirements
 
-Requirements
-------------
+- PHP 8.2+
+- Docker & Docker Compose
+- Composer
 
-This Web Project is compatible with Nette 3.2 and requires PHP 8.2.
+## Quick Start
 
+1. Clone the repository and navigate to the project directory:
 
-Installation
-------------
+```bash
+docker compose up -d --build
+```
+2. Install PHP dependencies using Composer:
+```bash
+docker compose run --rm app composer install
+```
 
-To install the Web Project, Composer is the recommended tool. If you're new to Composer,
-follow [these instructions](https://doc.nette.org/composer). Then, run:
+3. Bulk indexing (init all data in Elasticsearch) :
 
-	composer create-project nette/web-project path/to/install
-	cd path/to/install
+```bash
+docker compose run --rm app php bin/init-elasticsearch.php
+```
 
-Ensure the `temp/` and `log/` directories are writable.
+4. Init all data cache in Redis:
 
+```bash
+docker compose run --rm app php bin/init-redis-cache.php
+```
 
-Asset Building with Vite
-------------------------
+5. Access the application at `http://localhost:8080`
 
-This project supports Vite for asset building, which is recommended but optional. To activate Vite:
+## Services
 
-1. Uncomment the `type: vite` line in the `common.neon` configuration file under the assets mapping section.
-2. Then set up and build the assets:
+| Service          | Port |
+|------------------|------|
+| Application      | 8080 |
+| MySQL            | 3306 |
+| Redis            | 6379 |
+| Elasticsearch    | 9200 |
 
-		npm install
-		npm run build
+## Tech Stack
 
+- **Framework:** Nette 4.0
+- **PHP:** 8.4
+- **Database:** MySQL 8.0
+- **Cache:** Redis 7
+- **Search:** Elasticsearch 8.11
+- **Templating:** Latte
+- **Testing:** Tester
+- **Static Analysis:** PHPStan
 
-Web Server Setup
-----------------
+## Commands
 
-To quickly dive in, use PHP's built-in server:
+```bash
+# Run static analysis
+composer phpstan
 
-	php -S localhost:8000 -t www
-
-Then, open `http://localhost:8000` in your browser to view the welcome page.
-
-For Apache or Nginx users, configure a virtual host pointing to your project's `www/` directory.
-
-**Important Note:** Ensure `app/`, `config/`, `log/`, and `temp/` directories are not web-accessible.
-Refer to [security warning](https://nette.org/security-warning) for more details.
-
-
-Minimal Skeleton
-----------------
-
-For demonstrating issues or similar tasks, rather than starting a new project, use
-[minimal skeleton](https://github.com/nette/web-project/tree/minimal).
+# Run tests
+composer tester
+```
