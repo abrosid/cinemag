@@ -21,7 +21,9 @@
 		"latte/latte": "^3.1",
 		"tracy/tracy": "^2.10",
 		"contributte/elastica": "^2.0",
-		"contributte/redis": "^0.6.2"
+		"contributte/redis": "^0.6.2",
+		"contributte/console": "^0.11.0",
+		"nextras/migrations": "^3.5"
 	},
 	"require-dev": {
 		"nette/tester": "^2.5",

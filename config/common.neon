@@ -32,6 +32,14 @@ assets:
 extensions:
 	elastica: Contributte\Elastica\DI\ElasticaExtension
 	redis: Contributte\Redis\DI\RedisExtension
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+
+migrations:
+	dir: %appDir%/../migrations
+	driver: mysql
+	dbal: nette
+	withDummyData: %debugMode%
 
 
 elastica:

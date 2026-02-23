@@ -11,35 +11,36 @@ A Nette-based demo web application for managing and searching a movie catalog.
 
 ## Requirements
 
-- PHP 8.2+
 - Docker & Docker Compose
-- Composer
 
 ## Quick Start
 
 1. Clone the repository and navigate to the project directory:
-
 ```bash
 docker compose up -d --build
 ```
+
 2. Install PHP dependencies using Composer:
 ```bash
 docker compose run --rm app composer install
 ```
 
-3. Bulk indexing (init all data in Elasticsearch) :
+3. Run database migrations:
+```bash
+docker compose run --rm app bin/console migrations:continue
+```
 
+4. Bulk indexing (init all data in Elasticsearch) :
 ```bash
 docker compose run --rm app php bin/init-elasticsearch.php
 ```
 
-4. Init all data cache in Redis:
-
+5. Init all data cache in Redis:
 ```bash
 docker compose run --rm app php bin/init-redis-cache.php
 ```
 
-5. Access the application at `http://localhost:8080`
+6. Access the application at `http://localhost:8080`
 
 ## Services
 
@@ -54,12 +55,16 @@ docker compose run --rm app php bin/init-redis-cache.php
 
 - **Framework:** Nette 4.0
 - **PHP:** 8.4
+- **Dependency Management:** Composer
 - **Database:** MySQL 8.0
 - **Cache:** Redis 7
 - **Search:** Elasticsearch 8.11
-- **Templating:** Latte
-- **Testing:** Tester
+- **Templating:** Nette Latte
+- **Testing:** Nette Tester
 - **Static Analysis:** PHPStan
+- **DB migrations:** Nextras\Migrations
+- **Console Commands:** Contributte Console (Symfony Console)
+- **Containerization:** Docker & Docker Compose
 
 ## Commands
 

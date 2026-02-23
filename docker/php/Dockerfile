@@ -18,15 +18,12 @@ COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN mkdir -p /var/log && touch /var/log/xdebug.log && chmod 666 /var/log/xdebug.log
 
-WORKDIR /var/www/html
-
-# install dependencies
-COPY composer.json /var/www/html/composer.json
-
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+WORKDIR /var/www/html
 
 COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html
 
+RUN chmod +x ./bin/console

@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$bootstrap = new App\Bootstrap();
+$container = $bootstrap->bootWebApplication();
+$application = $container->getByType(Contributte\Console\Application::class);
+
+exit($application->run());

@@ -2,6 +2,7 @@
 
 services:
   app:
+    container_name: cinemag_app
     build:
       context: .
       dockerfile: docker/php/Dockerfile
@@ -13,12 +14,11 @@ services:
       - elasticsearch
     environment:
       PHP_IDE_CONFIG: "serverName=movie-catalog"
-#      XDEBUG_MODE: debug
-#      XDEBUG_CONFIG: "client_host=host.docker.internal client_port=9003 start_with_request=yes"
     networks:
       - movie-net
 
   nginx:
+    container_name: cinemag_nginx
     image: nginx:alpine
     ports:
       - "8080:80"
@@ -31,6 +31,7 @@ services:
       - movie-net
 
   mysql:
+    container_name: cinemag_mysql
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: secret
@@ -41,11 +42,11 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./docker/db/mysql/*:/docker-entrypoint-initdb.d
     networks:
       - movie-net
 
   redis:
+    container_name: cinemag_redis
     image: redis:7-alpine
     ports:
       - "6379:6379"
@@ -53,6 +54,7 @@ services:
       - movie-net
 
   elasticsearch:
+    container_name: cinemag_es
     image: elasticsearch:8.11.0
     environment:
       - discovery.type=single-node
