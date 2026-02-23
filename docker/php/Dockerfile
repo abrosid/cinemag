@@ -1,5 +1,6 @@
 FROM php:8.4-fpm
 
+# Install necessary packages and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     zip unzip \
@@ -9,8 +10,9 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && docker-php-ext-install pdo pdo_mysql intl opcache
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+# Install Xdebug
+RUN pecl install xdebug
+#    && docker-php-ext-enable xdebug
 
 COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
@@ -18,8 +20,11 @@ RUN mkdir -p /var/log && touch /var/log/xdebug.log && chmod 666 /var/log/xdebug.
 
 WORKDIR /var/www/html
 
+# install dependencies
 COPY composer.json /var/www/html/composer.json
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 COPY . /var/www/html
 

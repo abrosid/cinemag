@@ -8,7 +8,6 @@ use App\Domain\Movie\MovieRepository;
 use App\Domain\Movie\MovieSearchService;
 use Nette;
 use Nette\Application\Responses\JsonResponse;
-use Tracy\Debugger;
 
 final class MoviePresenter extends Nette\Application\UI\Presenter
 {

@@ -9,3 +9,5 @@ parameters:
         - app/Presentation/*/templates/*.latte
     treatPhpDocTypesAsCertain: false
     ignoreErrors: []
+    universalObjectCratesClasses:
+        - App\Domain\Entity

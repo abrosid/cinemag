@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS movie (
     movie_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    parex TEXT NOT NULL,
+    perex TEXT NOT NULL,
     year INT NOT NULL,
     description TEXT NOT NULL,
     rating FLOAT NOT NULL,

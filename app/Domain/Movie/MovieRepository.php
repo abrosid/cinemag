@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Movie;
 
+use App\Domain\Entity;
+use App\Domain\RepositoryInterface;
 use Nette\Database\Explorer;
 use Nette\Database\Table\ActiveRow;
 
-class MovieRepository
+class MovieRepository implements RepositoryInterface
 {
 	public function __construct(
 		private readonly Explorer $db,
@@ -89,12 +91,12 @@ class MovieRepository
 	}
 
 
-	public function toArray(Movie $movie): array
+	public function toArray(Entity $movie): array
 	{
 		return [
 			'id' => $movie->id,
 			'title' => $movie->title,
-			'parex' => $movie->parex,
+			'perex' => $movie->perex,
 			'year' => $movie->year,
 			'description' => $movie->description,
 			'rating' => $movie->rating,
@@ -104,12 +106,12 @@ class MovieRepository
 	}
 
 
-	public function fromArray(array $data): Movie
+	public function fromArray(array $data): Entity
 	{
 		return new Movie(
 			id: (int) $data['id'],
 			title: (string) $data['title'],
-			parex: (string) $data['parex'],
+			perex: (string) $data['perex'],
 			year: (int) $data['year'],
 			description: (string) $data['description'],
 			rating: (float) $data['rating'],
@@ -126,7 +128,7 @@ class MovieRepository
 		return new Movie(
 			id: (int) $row->movie_id,
 			title: (string) $row->title,
-			parex: (string) $row->parex,
+			perex: (string) $row->perex,
 			year: (int) $row->year,
 			description: (string) $row->description,
 			rating: (float) $row->rating,

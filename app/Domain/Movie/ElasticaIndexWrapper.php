@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Domain\Movie;
 
 use Elastica\Document;
-use Elastica\Exception\ExceptionInterface;
 use Elastica\Index;
 use Elastica\Query;
 use Elastica\ResultSet;

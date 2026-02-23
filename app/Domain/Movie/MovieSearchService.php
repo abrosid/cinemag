@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Movie;
 
+use App\Domain\Entity;
 use Contributte\Elastica\Client as ElasticaClient;
 use Elastica\Document;
 use Elastica\Exception\ExceptionInterface;
@@ -16,6 +17,9 @@ use Predis\ClientInterface;
 
 final class MovieSearchService
 {
+    private const PER_PAGE = 100;
+    public const LIMIT = 20;
+
 	private Index $index;
 
 
@@ -30,7 +34,7 @@ final class MovieSearchService
 
 	public function bulkIndexAll(): void
 	{
-		$perPage = 100;
+		$perPage = self::PER_PAGE;
 		$offset = 0;
 
 		while (true) {
@@ -45,7 +49,7 @@ final class MovieSearchService
 					(string) $movie->id,
 					[
 						'title' => $movie->title,
-						'parex' => $movie->parex,
+						'perex' => $movie->perex,
 						'year' => $movie->year,
 						'description' => $movie->description,
 						'rating' => $movie->rating,
@@ -75,7 +79,7 @@ final class MovieSearchService
 			(string) $movie->id,
 			[
 				'title' => $movie->title,
-				'parex' => $movie->parex,
+				'perex' => $movie->perex,
 				'year' => $movie->year,
 				'description' => $movie->description,
 				'rating' => $movie->rating,
@@ -101,24 +105,19 @@ final class MovieSearchService
 	/**
 	 * @return int[]
 	 */
-	public function searchIds(string $query, int $limit = 20): array
+	public function searchIds(string $query, int $limit = self::LIMIT): array
 	{
 		$query = trim($query);
 		if ($query == '') {
 			return [];
 		}
 
-		$bool = new BoolQuery;
-
-		$multi = new MultiMatch;
-		$multi->setQuery($query);
-		$multi->setFields(['title^3', 'parex^2', 'description']);
-
-		$bool->addMust($multi);
-
-		$esQuery = new Query($bool);
-		$esQuery->setSize($limit);
-
+		$multi = (new MultiMatch())
+            ->setQuery($query)
+            ->setFields(['title^3', 'perex^2', 'description']);
+        $bool = (new BoolQuery())
+            ->addMust($multi);
+		$esQuery = (new Query($bool))->setSize($limit);
 		$resultSet = $this->index->search($esQuery);
 
 		$ids = [];
@@ -153,7 +152,7 @@ final class MovieSearchService
 
 	/**
 	 * @param int[] $ids
-	 * @return Movie[]
+	 * @return Entity[]
 	 */
 	public function loadMoviesFromCache(array $ids): array
 	{
@@ -176,7 +175,7 @@ final class MovieSearchService
 				continue;
 			}
 
-			$decoded = Json::decode((string) $item, Json::FORCE_ARRAY);
+			$decoded = Json::decode((string) $item, true);
 			$moviesById[$id] = $this->repository->fromArray($decoded);
 		}
 
@@ -218,7 +217,7 @@ final class MovieSearchService
 
 	public function warmAllCache(): void
 	{
-		$perPage = 100;
+		$perPage = self::PER_PAGE;
 		$offset = 0;
 
 		while (true) {

@@ -5,12 +5,11 @@
 	<article class="movie-detail">
 		<div class="media">
 			<div class="thumbnail">
-{*				{if $movie->thumbnailPath}*}
-{*					<img src="{$movie->thumbnailPath}" alt="{$movie->title}">*}
-{*				{else}*}
-{*					<div class="thumbnail-placeholder">No image</div>*}
-{*				{/if}*}
-				<img src="https://picsum.photos/200/300">
+				{if $movie->thumbnailPath}
+					<img src="{$movie->thumbnailPath}" alt="{$movie->title}">
+				{else}
+					<div class="thumbnail-placeholder">No image</div>
+				{/if}
 			</div>
 		</div>
 
@@ -22,7 +21,7 @@
 					<span class="rating">⭐ {$movie->rating|number:1}</span>
 					<span class="price">{$movie->price|number:2} €</span>
 				</div>
-				<p class="parex">{$movie->parex}</p>
+				<p class="perex">{$movie->perex}</p>
 			</header>
 
 			<section class="description">
@@ -131,7 +130,7 @@
 	font-size: 1.05rem;
 }
 
-.parex {
+.perex {
 	margin: 0 0 1.25rem;
 	color: #4b5563;
 }

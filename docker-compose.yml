@@ -41,7 +41,7 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./docker/db/mysql:/docker-entrypoint-initdb.d
+      - ./docker/db/mysql/*:/docker-entrypoint-initdb.d
     networks:
       - movie-net
 

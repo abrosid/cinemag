@@ -23,12 +23,11 @@
 				<article class="movie-tile">
 					<a n:href="detail id => $movie->id">
 						<div class="thumbnail">
-{*							{if $movie->thumbnailPath}*}
-{*								<img src="{$movie->thumbnailPath}" alt="{$movie->title}">*}
-{*							{else}*}
-{*								<div class="thumbnail-placeholder">No image</div>*}
-{*							{/if}*}
-							<img src="{$basePath}/images/posters/img_{$iterator}.png" lazyload="lazy" alt="{$movie->title}">
+							{if $movie->thumbnailPath}
+								<img src="{$movie->thumbnailPath}" alt="{$movie->title}">
+							{else}
+								<div class="thumbnail-placeholder">No image</div>
+							{/if}
 						</div>
 						<div class="info">
 							<h2>{$movie->title}</h2>
@@ -37,7 +36,7 @@
 								<span class="rating">⭐ {$movie->rating|number:1}</span>
 								<span class="price">{$movie->price|number:2} €</span>
 							</div>
-							<p class="parex">{$movie->parex}</p>
+							<p class="perex">{$movie->perex}</p>
 						</div>
 					</a>
 				</article>
@@ -260,7 +259,7 @@
 	color: #16a34a;
 }
 
-.parex {
+.perex {
 	margin: 0;
 	font-size: 0.9rem;
 	color: #4b5563;

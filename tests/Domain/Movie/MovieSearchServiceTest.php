@@ -63,8 +63,8 @@ class MovieSearchServiceTest extends TestCase
     private function mockrepozotory(): void
     {
         // Mock the repository to return a list of movies
-        $movie1 = (object) ['id' => 1, 'title' => 'Movie 1', 'parex' => 'Action', 'year' => 2020, 'description' => 'Description 1', 'rating' => 8.5, 'price' => 10.0];
-        $movie2 = (object) ['id' => 2, 'title' => 'Movie 2', 'parex' => 'Comedy', 'year' => 2021, 'description' => 'Description 2', 'rating' => 7.0, 'price' => 12.0];
+        $movie1 = (object) ['id' => 1, 'title' => 'Movie 1', 'perex' => 'Action', 'year' => 2020, 'description' => 'Description 1', 'rating' => 8.5, 'price' => 10.0];
+        $movie2 = (object) ['id' => 2, 'title' => 'Movie 2', 'perex' => 'Comedy', 'year' => 2021, 'description' => 'Description 2', 'rating' => 7.0, 'price' => 12.0];
         $this->repository->shouldReceive('findPage')->with(100, 0)->andReturn([$movie1, $movie2]);
         $this->repository->shouldReceive('findPage')->with(100, 100)->andReturn([]);
     }
