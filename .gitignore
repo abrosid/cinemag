@@ -3,5 +3,5 @@
 .vscode
 composer.lock
 vendor
-temp
-log
+temp/*
+log/*
